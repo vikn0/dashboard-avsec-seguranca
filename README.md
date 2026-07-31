@@ -1,40 +1,36 @@
-# 🛡️ Análise Operacional e Ocorrências AVSEC
+# 🛡️ Análise Operacional de Segurança AVSEC
 
-![Dashboard Preview](dashboard_preview.png)
+![Dashboard Preview](img/dashboard_preview.png)
 
-Este relatório analisa os padrões operacionais, a distribuição temporal de ocorrências e a produtividade da equipe de segurança (**AVSEC**), utilizando dados consolidados do período.
-
----
-
-## 1. Análise dos Dados
-
-Os dados revelam uma forte concentração espacial e temporal nos acionamentos operacionais: a maioria esmagadora das ocorrências está centralizada no **1º Pavimento**, enquanto o período da **Manhã** responde pelo maior volume de demandas. O gráfico de linha temporal destaca o mês de **Janeiro** como um *outlier* de altíssima demanda (1.277 acionamentos), seguido por um padrão de estabilização nos meses subsequentes.
-
-Entre os tipos de ocorrência, a categoria **Pedinte** representa a principal causa de acionamentos no local, seguida por **Comerciante Não Credenciado**.
+## 📌 Visão Geral do Projeto
+Este projeto consiste no desenvolvimento de um painel analítico para acompanhamento das operações e acionamentos da equipe de segurança (**AVSEC**). O objetivo é fornecer visibilidade clara sobre o tempo total de gravação, os locais de maior ocorrência, os períodos do dia de maior demanda e a atuação da equipe de vigilantes.
 
 ---
 
-## 2. Principais Indicadores Identificados (KPIs)
-
-* **Acionamento Total:** 3.915 registros.
-* **Tempo de Gravação Total:** 175h 30m 52s (tempo acumulado de acompanhamento).
-* **Vigilante Mais Atuante:** Matheus.
-* **Local Mais Utilizado:** Escadaria do EDG.
-* **Distribuição por Período:** 
-  * 🟢 **Manhã:** 59,57% dos acionamentos.
-  * 🟡 **Tarde:** 36,07% dos acionamentos.
-  * 🖤 **Noite:** 4,37% dos acionamentos.
+## 🛠️ Tecnologias e Ferramentas Utilizadas
+* **Power Query (M):** Limpeza, tratamento e padronização de dados brutos de texto, correção de incongruências em datas e delimitadores.
+* **DAX:** Criação de medidas de desempenho e formatação personalizada para acúmulo de tempo contínuo superior a 24 horas.
+* **Power BI:** Modelagem de dados (Star Schema) e construção do relatório interativo.
 
 ---
 
-## 3. Conclusões e Recomendações
-
-* **Conclusão:** A operação de segurança apresenta uma demanda altamente previsível, concentrada no primeiro turno do dia e no primeiro pavimento. A redução de ocorrências após o pico de janeiro demonstra eficácia nas ações preventivas ou mudança no fluxo de frequentadores.
-* **Recomendação:** A gestão operacional deve otimizar a escala de alocação dos vigilantes, reforçando a ronda no **1º Pavimento** durante o período da **Manhã** para mitigar abordagens de pedintes e comerciantes não credenciados, garantindo maior eficiência do efetivo.
+## 🧹 Principais Desafios de ETL e Tratamento de Dados
+Durante a fase de preparação de dados no Power Query, foram resolvidas diversas inconsistências da base original:
+1. **Normalização de Datas:** Tratamento de entradas em padrões mistos (BR/EUA) e presença de delimitadores incorretos (`:` ao invés de `/`).
+2. **Parsing de Texto Não Estruturado:** Extração precisa dos nomes dos vigilantes a partir da coluna de ações tomadas, lidando com variações de nomenclatura e múltiplos delimitadores (`até`, `a saída`, `a rampa`).
+3. **Cálculo Acumulado de Tempo em DAX:** Resolução do limite nativo do Power BI de 24 horas na exibição do tempo total gravado através da conversão para segundos e reconversão em string `[HH:MM:SS]`.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
-* **Power Query (M):** Limpeza e parsing de dados textuais não estruturados.
-* **DAX:** Tratamento de acumulado de tempo em formato contínuo (`[HH:MM:SS]`).
-* **Power BI:** Modelagem e visualização de dados.
+## 📊 Principais Insights do Painel
+* **Tempo Total Gravado:** Mais de **175 horas** de acionamentos registrados ao longo do período.
+* **Concentração Espacial:** O **1º Pavimento** concentrou a grande maioria dos acionamentos (`~2.790` ocorrências).
+* **Distribuição Temporal:** O período da **Manhã** representa a maior fatia dos acionamentos (`~59,5%`), seguido da **Tarde** (`~36%`).
+* **Sazonalidade:** Pico acentuado de acionamentos no mês de **Janeiro** (`1.277` registros), apresentando estabilização nos meses subsequentes.
+
+---
+
+## 📂 Como Replicar este Projeto
+1. Clone este repositório:
+   ```bash
+   git clone [https://github.com/SEU-USUARIO/dashboard-avsec-seguranca.git](https://github.com/SEU-USUARIO/dashboard-avsec-seguranca.git)
